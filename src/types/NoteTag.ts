@@ -1,0 +1,1 @@
+export type NoteTag = "" | "Work" | "Personal" | " Meeting" | "Shopping" | "Todo";
