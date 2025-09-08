@@ -1,7 +1,7 @@
 import axios from "axios";
-import type { Note } from "../types/note";
-import type { NewNote } from "../types/newNote";
-const token = import.meta.env.VITE_NOTEHUB_TOKEN;
+import type { Note } from "@/types/note";
+import type { NewNote } from "@/types/newNote";
+const token = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
 
 interface GetTasksResponse {
     notes: Note[],
@@ -41,6 +41,11 @@ export const createNote = async (newNote: NewNote): Promise<Note> => {
 
 export const deleteNote = async (taskId: string): Promise<Note> => {
     const response = await axios.delete<Note>(`https://notehub-public.goit.study/api/notes/${taskId}`, config);
+    return response.data;
+};
+ 
+export const getSingleNote = async (taskId: string): Promise<Note> => {
+    const response = await axios.get<Note>(`https://notehub-public.goit.study/api/notes/${taskId}`, config);
     return response.data;
 };
  

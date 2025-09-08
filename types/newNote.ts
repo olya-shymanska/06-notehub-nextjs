@@ -1,4 +1,4 @@
-import type { NoteTag } from "./NoteTag";
+import type { NoteTag } from "./note";
 
 export interface NewNote {
     title: string,

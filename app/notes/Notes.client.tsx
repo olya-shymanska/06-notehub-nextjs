@@ -1,18 +1,20 @@
-import SearchBox from "../SearchBox/SearchBox"
-import Pagination from "../Pagination/Pagination";
-import NoteList from "../NoteList/NoteList"
-import { fetchNotes } from "../../services/noteService";
+'use client'
+
+import SearchBox from "@/components/SearchBox/SearchBox"
+import Pagination from "@/components/Pagination/Pagination";
+import NoteList from "@/components/NoteList/NoteList"
+import { fetchNotes } from "@/lib/api";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useDebouncedCallback } from 'use-debounce';
 import { useState } from "react";
-import css from './App.module.css'
-import Modal from "../Modal/Modal";
-import Loader from "../Loader/Loader";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import ErrorRequest from "../ErrorRequest/ErrorRequest";
-import NoteForm from "../NoteForm/NoteForm";
+import css from './Notes.module.css'
+import Modal from "@/components/Modal/Modal";
+import Loader from "@/components/Loader/Loader";
+import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
+import ErrorRequest from "@/components/ErrorRequest/ErrorRequest";
+import NoteForm from "@/components/NoteForm/NoteForm";
 
-function App() {
+function NotesClient() {
 
   const [inputValue, setinputValue] = useState('');
   const [page, setPage] = useState(1);
@@ -23,7 +25,8 @@ function App() {
 
   const {data, isSuccess, isLoading, isFetching, isError} = useQuery({
     queryKey: ['notes', inputValue, page],
-    queryFn: () => fetchNotes({ query: inputValue, page: page }),
+      queryFn: () => fetchNotes({ query: inputValue, page: page }),
+      refetchOnMount: false,
     placeholderData: keepPreviousData,
   });
 
@@ -70,4 +73,8 @@ function App() {
   )
 }
 
-export default App
+export default NotesClient
+
+
+
+

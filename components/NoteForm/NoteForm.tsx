@@ -1,8 +1,8 @@
 import { Formik, Form, Field, type FormikHelpers, ErrorMessage} from "formik";
 import { useId } from "react";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createNote } from "../../services/noteService";
-import type { NoteTag } from "../../types/NoteTag";
+import { createNote } from "@/lib/api";
+import { NoteTag } from "@/types/note";
 import * as Yup from "yup";
 import css from './NoteForm.module.css'
 
